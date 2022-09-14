@@ -1,0 +1,1 @@
+bucket_name = "terraform-state-testing-resource-september-2023"

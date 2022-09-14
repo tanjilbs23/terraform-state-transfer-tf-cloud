@@ -15,15 +15,14 @@ terraform {
 }
 
 provider "aws" {
-  region  = "eu-west-1"
+  region = "eu-west-1"
 }
 
 
 
 # S3 Bucket
 module "s3_bucket" {
-  source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.4.0"
+  source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket                  = var.bucket_name
   block_public_acls       = true
@@ -38,7 +37,7 @@ module "s3_bucket" {
 
   # Tags for the Bucket
   tags = {
-    Name        = "terraform-state-testing-resource-september-2022"
+    Name        = "terraform-state-testing-resource-september-2023"
     Environment = "DEV"
   }
 
@@ -70,8 +69,7 @@ data "aws_cloudfront_cache_policy" "this" {
 
 # Cloudfront
 module "cloudfront" {
-  source  = "terraform-aws-modules/cloudfront/aws"
-  version = "2.9.3"
+  source = "terraform-aws-modules/cloudfront/aws"
 
   comment             = "terraform-state-testing-resource-september-2022"
   enabled             = true
@@ -139,6 +137,7 @@ module "cloudfront" {
   }
 
   tags = {
+    Owner       = "Tanjil"
     Environment = "DEV"
   }
 
